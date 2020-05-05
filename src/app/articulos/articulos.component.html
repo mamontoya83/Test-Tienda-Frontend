@@ -1,0 +1,36 @@
+<div class="card border-info mb-3">
+  <div class="card-header">Articulo</div>
+  <div class="card-body text-info">
+    <h5 class="card-title">Lista de Articulos</h5>
+      <div class="my-2 text-left">
+        <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/articulos/form']">Crear Artiuculo</button>
+      </div>
+      <div class="alert alert-info" *ngIf="articulos.length == 0">
+        No hay registros en la base de datos
+      </div>
+      <table class="table table-bordered table-striped" *ngIf="articulos.length > 0">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>IdInventario</th>
+            <th>Fecha de Registro</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let articulo of articulos">
+            <td>{{articulo.id}}</td>
+            <td>{{articulo.nombre}}</td>
+            <td>{{articulo.cantidad}}</td>
+            <td>{{articulo.idInventario}}</td>
+            <td>{{articulo.createAt}}</td>
+            <td><button type="button" class="btn btn-primary btn-sm" [routerLink]="['/articulos/form',articulo.id]">editar</button></td>
+            <td><button type="button" class="btn btn-danger btn-sm" (click)="delete(articulo)">eliminar</button></td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>

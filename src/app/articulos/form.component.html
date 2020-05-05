@@ -1,0 +1,46 @@
+<ul class="alert alert-danger" *ngIf="errores?.length > 0">
+  <li *ngFor="let err of errores">
+    {{err}}
+  </li>
+</ul>
+<div class="card bg-dark text-white col-sm-8">
+  <div class="card-header">{{ titulo }}</div>
+  <div class="card-body">
+    <form>
+
+      <div id="form-group row">
+        <label for="nombre" class="col-form-label">Nombre</label>
+        <div>
+          <input type="text" class="form-control" ngModel require [(ngModel)]="articulo.nombre" name="nombre">
+        </div>
+      </div>
+
+      <div id="form-group row">
+        <label for="cantidad" class="col-form-label">Cantidad</label>
+        <div>
+          <input type="number" class="form-control" [(ngModel)]="articulo.cantidad" name="cantidad">
+        </div>
+      </div>
+
+      <div id="form-group row">
+        <label for="idInventario" class="col-form-label">IdInventario</label>
+        <div>
+          <input type="text" class="form-control" [(ngModel)]="articulo.idInventario" name="idInventario">
+        </div>
+      </div>
+
+      <div id="form-group row">
+        <br>
+        <div >
+          <button class="btn btn-primary btn-lg" role="button" name="button" (click)='create()' *ngIf="!articulo.id else elseBlock">Guardar</button>
+          &nbsp;
+          <button class="btn btn-secondary btn-lg" role="button" name="button" routerLink="/articulos" >Cancelar</button>
+          <ng-template #elseBlock>
+            <button class="btn btn-primary" role="button" (click)='update()'>Update</button>
+          </ng-template>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
